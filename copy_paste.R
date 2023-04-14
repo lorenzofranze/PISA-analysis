@@ -3,6 +3,10 @@
 
 # import dataframes (already difficult)
 library(foreign)
+install.packages("ggplot2")       
+install.packages("GGally")
+library("ggplot2")                     
+library("GGally")
 # schools = read.spss("CY07_MSU_SCH_QQQ.sav", to.data.frame=TRUE)
 students = read.spss("CY07_MSU_STU_QQQ.sav", to.data.frame=TRUE)
 # teachers = read.spss("CY07_MSU_tch_QQQ.sav", to.data.frame=TRUE) 
@@ -33,15 +37,24 @@ df$PERCOOP <- as.numeric(as.character(PERCOOP))
 df$COMPETE <- as.numeric(as.character(COMPETE))
 df$GFOFAIL <- as.numeric(as.character(GFOFAIL))
 df$RESILIENCE <- as.numeric(as.character(RESILIENCE))
+df$ATTLNACT <- as.numeric(as.character(ATTLNACT))
 df$MASTGOAL <- as.numeric(as.character(MASTGOAL))
 detach(df)
+
+to_plot <- df[sample(nrow(df),size = 50, replace = F),]
+pairs(to_plot)
+boxplot(to_plot)
 
 # change column names
 #colnames(df) <- c('country', 'exp_occupation', 'parents_support', 'compet_school',
                   #'coop_school', 'compet', 'fear_fail', 'resilience',
                   #'master_orient', 'math', 'reading')
 # filter: italians
-dfITA = df[df$CNTRYID == 'Italy',]
+dfITA = df[df$CNTRYID == 'Italy',-1]
+to_plot2 <- dfITA[sample(nrow(dfITA),size = 50, replace = F),]
+pairs(to_plot2)
+boxplot(to_plot2)
+ggpairs(to_plot2)
 
 head(df)
 
@@ -68,6 +81,15 @@ dfITA["factor_PV1MATH"] <- performance_levels
 dfl = dfITA[dfITA$factor_PV1MATH == 'l',2:8]
 dfm = dfITA[dfITA$factor_PV1MATH == 'm',2:8]
 dfh = dfITA[dfITA$factor_PV1MATH == 'h',2:8]
+pc <- prcomp(dfITA[,-c(10,11)],center = TRUE, scale = TRUE)
+pc
+summary(pc)
+
+pc2 <- prcomp(dfITA[,-c(10,11)])
+pc2
+summary(pc2)
+
+
 
 ### check normality in each population
 
