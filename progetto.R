@@ -1,7 +1,7 @@
 # import dataframes (already difficult)
 library(foreign)
 schools = read.spss("CY07_MSU_SCH_QQQ.sav", to.data.frame=TRUE)
-students = read.spss("CY07_MSU_STU_QQQ.sav", to.data.frame=TRUE)
+students = read.spss("C:/Users/leona/Desktop/Universita/Magistrale/PrimoAnno/SecondoSemestre/AppliedStatistics/Datasets/CY07_MSU_STU_QQQ.sav", to.data.frame=TRUE)
 teachers = read.spss("CY07_MSU_tch_QQQ.sav", to.data.frame=TRUE) 
 
 # dataframe about students
