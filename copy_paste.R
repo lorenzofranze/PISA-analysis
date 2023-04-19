@@ -37,7 +37,6 @@ df$PERCOOP <- as.numeric(as.character(PERCOOP))
 df$COMPETE <- as.numeric(as.character(COMPETE))
 df$GFOFAIL <- as.numeric(as.character(GFOFAIL))
 df$RESILIENCE <- as.numeric(as.character(RESILIENCE))
-df$ATTLNACT <- as.numeric(as.character(ATTLNACT))
 df$MASTGOAL <- as.numeric(as.character(MASTGOAL))
 detach(df)
 
@@ -81,11 +80,11 @@ dfITA["factor_PV1MATH"] <- performance_levels
 dfl = dfITA[dfITA$factor_PV1MATH == 'l',2:8]
 dfm = dfITA[dfITA$factor_PV1MATH == 'm',2:8]
 dfh = dfITA[dfITA$factor_PV1MATH == 'h',2:8]
-pc <- prcomp(dfITA[,-c(10,11)],center = TRUE, scale = TRUE)
+pc <- prcomp(dfITA[,-c(10,9)],center = TRUE, scale = TRUE)
 pc
 summary(pc)
 
-pc2 <- prcomp(dfITA[,-c(10,11)])
+pc2 <- prcomp(dfITA[,-c(9,10)])
 pc2
 summary(pc2)
 
