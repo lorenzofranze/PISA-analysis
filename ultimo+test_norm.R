@@ -10,7 +10,6 @@ library("GGally")
 # schools = read.spss("CY07_MSU_SCH_QQQ.sav", to.data.frame=TRUE)
 students = read.spss("CY07_MSU_STU_QQQ.sav", to.data.frame=TRUE)
 # teachers = read.spss("CY07_MSU_tch_QQQ.sav", to.data.frame=TRUE) 
-# save(students, file='students.RData')
 students=CY07_MSU_STU_QQQ
 # dataframe about students
 head(students)
@@ -19,7 +18,8 @@ head(students)
 df = students[,c(1,863,887,895,896,898,900,903,904,1027,1037)]
 head(df)
 dim(df)
-save(df,file="students.sav")
+save(df, file='students.RData')
+D<-get(load("students.RData"))
 # remove NA's
 df = na.omit(df)
 dim(df)
