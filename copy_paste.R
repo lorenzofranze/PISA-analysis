@@ -50,7 +50,7 @@ boxplot(to_plot)
                   #'master_orient', 'math', 'reading')
 # filter: italians
 dfITA = df[df$CNTRYID == 'Italy',-1]
-to_plot2 <- dfITA[sample(nrow(dfITA),size = 50, replace = F),]
+to_plot2 <- dfITA[sample(nrow(dfITA),size = 50, replace = F),c(11,10)]
 pairs(to_plot2)
 boxplot(to_plot2)
 ggpairs(to_plot2)
