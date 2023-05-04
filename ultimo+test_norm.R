@@ -6,11 +6,12 @@ library(bestNormalize)
 library("ggplot2")                     
 library("GGally")
 
+set.seed(040523)
+
 # import dataframes (already difficult)
 # schools = read.spss("CY07_MSU_SCH_QQQ.sav", to.data.frame=TRUE)
 students = read.spss("CY07_MSU_STU_QQQ.sav", to.data.frame=TRUE)
 # teachers = read.spss("CY07_MSU_tch_QQQ.sav", to.data.frame=TRUE) 
-students=CY07_MSU_STU_QQQ
 # dataframe about students
 head(students)
 
@@ -18,8 +19,8 @@ head(students)
 df = students[,c(1,863,887,895,896,898,900,903,904,1027,1037)]
 head(df)
 dim(df)
-save(df, file='students.RData')
-D<-get(load("students.RData"))
+#save(df, file='students.RData')
+#df<-get(load("students.RData"))
 # remove NA's
 df = na.omit(df)
 dim(df)
@@ -32,6 +33,13 @@ for(j in 2:9)
 #colnames(df) <- c('country', 'exp_occupation', 'parents_support', 'compet_school',
                   #'coop_school', 'compet', 'fear_fail', 'resilience',
                   #'master_orient', 'math', 'reading')
+save(df, file='df_processed.RData')
+df<-get(load('df_processed.RData'))
+
+# jitter data
+for(j in 1:p)
+  df[,j] <- df[,j] + cbind(rnorm(n, sd=0.025))
+
 # filter: italians
 dfITA = df[df$CNTRYID == 'Italy', ]
 dim(dfITA)
@@ -61,6 +69,7 @@ performance_levels <- factor(performance_levels)
 dfITA["factor_PV1MATH"] <- performance_levels
 
 save(dfITA, file='dfITA_processed.RData')
+dfITA<-get(load('dfITA_processed.RData'))
 
 #dfl = dfITA[dfITA$factor_PV1MATH == 'l',2:8]
 #dfm = dfITA[dfITA$factor_PV1MATH == 'm',2:8]
