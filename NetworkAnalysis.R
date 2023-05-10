@@ -1,8 +1,11 @@
 library(corrr)
 
-for_factor <- students[,c(1,863,887,895,896,898,900,903,904,872,873,874,875,879,880,883,884,888,889,890,891,892,899,905,908,935)]
+for_factor <- students[,c(1,863,887,895,896,898,900,903,904,872,873,874,875,879,880,883,884,888,889,890,891,892,899,905,908,935,1027,1037)]
+                      
 #for_factor <- students[,c(1,863:943,1027,1037)]
 #for_factor <- for_factor[,-c(6:10,41)]
+
+# 
 
 for_factor <- na.omit(for_factor)
 ffITA = for_factor[for_factor$CNTRYID == 'Italy', ]
